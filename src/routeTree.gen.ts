@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './pages/__root'
 import { Route as SitemapDotxmlRouteImport } from './pages/sitemap[.]xml'
+import { Route as SaradRouteImport } from './pages/sarad'
 import { Route as ProductsRouteImport } from './pages/products'
 import { Route as PortfolioRouteImport } from './pages/portfolio'
 import { Route as MarketingRouteImport } from './pages/marketing'
@@ -23,6 +24,11 @@ import { Route as IndexRouteImport } from './pages/index'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SaradRoute = SaradRouteImport.update({
+  id: '/sarad',
+  path: '/sarad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsRoute = ProductsRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/products': typeof ProductsRoute
+  '/sarad': typeof SaradRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/products': typeof ProductsRoute
+  '/sarad': typeof SaradRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/products': typeof ProductsRoute
+  '/sarad': typeof SaradRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/portfolio'
     | '/products'
+    | '/sarad'
     | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/portfolio'
     | '/products'
+    | '/sarad'
     | '/sitemap.xml'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/portfolio'
     | '/products'
+    | '/sarad'
     | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   MarketingRoute: typeof MarketingRoute
   PortfolioRoute: typeof PortfolioRoute
   ProductsRoute: typeof ProductsRoute
+  SaradRoute: typeof SaradRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sarad': {
+      id: '/sarad'
+      path: '/sarad'
+      fullPath: '/sarad'
+      preLoaderRoute: typeof SaradRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products': {
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   MarketingRoute: MarketingRoute,
   PortfolioRoute: PortfolioRoute,
   ProductsRoute: ProductsRoute,
+  SaradRoute: SaradRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
